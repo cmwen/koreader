@@ -1,0 +1,21 @@
+{
+    "name": "KOReader Dev Container",
+    "image": "koreader/koappimage:latest",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/ko/koreader,type=bind",
+    "workspaceFolder": "/home/ko/koreader",
+    "postCreateCommand": "./kodev fetch-thirdparty",
+    "runArgs": [
+        "--env-file",
+        "${localWorkspaceFolder}/.devcontainer/devcontainer.env"
+    ],
+    "mounts": [
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached"
+    ]
+}
